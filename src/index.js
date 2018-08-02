@@ -364,7 +364,7 @@ export const TCMention = MediumEditor.Extension.extend({
     if (selectedText) {
       const textNode = this.activeMentionAt.firstChild;
       if (details.name && details.name.length > 0) {
-        this.activeMentionAt.setAttribute(`data`, `name: ${details.name}`);
+        this.activeMentionAt.setAttribute(`data-name`, details.name);
       }
       if (details[`first-name`] && details[`first-name`].length > 0) {
         this.activeMentionAt.setAttribute(`data-first-name`, details[`first-name`]);
