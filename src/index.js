@@ -198,6 +198,11 @@ export const TCMention = MediumEditor.Extension.extend({
       this.showPanel();
     } else {
       this.hidePanel(keyCode === LEFT_ARROW_KEYCODE);
+      if (this.activeMentionAt && this.activeMentionAt.parentNode) {
+        this.base.saveSelection();
+        unwrapForTextNode(this.activeMentionAt, this.document);
+        this.base.restoreSelection();
+      }
     }
   },
 
@@ -343,22 +348,39 @@ export const TCMention = MediumEditor.Extension.extend({
   },
 
   positionPanel() {
-    const { bottom, left, width } = this.activeMentionAt.getBoundingClientRect();
+    const { bottom, left } = this.activeMentionAt.getBoundingClientRect();
     const { pageXOffset, pageYOffset } = this.window;
 
     this.mentionPanel.style.top = `${pageYOffset + bottom}px`;
-    this.mentionPanel.style.left = `${pageXOffset + left + width}px`;
+    this.mentionPanel.style.left = `${pageXOffset + left}px`;
   },
 
   updatePanelContent() {
     this.renderPanelContent(this.mentionPanel, this.word, ::this.handleSelectMention);
   },
 
-  handleSelectMention(seletedText) {
-    if (seletedText) {
+  handleSelectMention(selectedText, details) {
+    console.log(`XXX handleSelectMention`, selectedText, details);
+    if (selectedText) {
       const textNode = this.activeMentionAt.firstChild;
-      textNode.textContent = seletedText;
-      MediumEditor.selection.select(this.document, textNode, seletedText.length);
+      if (details.name && details.name.length > 0) {
+        this.activeMentionAt.setAttribute(`data`, `name: ${details.name}`);
+      }
+      if (details[`first-name`] && details[`first-name`].length > 0) {
+        this.activeMentionAt.setAttribute(`data-first-name`, details[`first-name`]);
+      }
+      if (details[`last-name`] && details[`last-name`].length > 0) {
+        this.activeMentionAt.setAttribute(`data-last-name`, details[`last-name`]);
+      }
+      if (details[`slack-username`] && details[`slack-username`].length > 0) {
+        this.activeMentionAt.setAttribute(`data-slack-username`, details[`slack-username`]);
+      }
+      if (details[`user-id`] && details[`user-id`].length > 0) {
+        this.activeMentionAt.setAttribute(`data-user-id`, details[`user-id`]);
+      }
+      this.activeMentionAt.setAttribute(`data-found`, `true`);
+      textNode.textContent = selectedText;
+      MediumEditor.selection.select(this.document, textNode, selectedText.length);
       //
       // If one of our contenteditables currently has focus, we should
       // attempt to trigger the 'editableInput' event
