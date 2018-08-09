@@ -360,11 +360,10 @@ export const TCMention = MediumEditor.Extension.extend({
   },
 
   handleSelectMention(selectedText, details) {
-    console.log(`XXX handleSelectMention`, selectedText, details);
     if (selectedText) {
       const textNode = this.activeMentionAt.firstChild;
-      if (details.name && details.name.length > 0) {
-        this.activeMentionAt.setAttribute(`data-name`, details.name);
+      if (details[`name`] && details[`name`].length > 0) {
+        this.activeMentionAt.setAttribute(`data-name`, details[`name`]);
       }
       if (details[`first-name`] && details[`first-name`].length > 0) {
         this.activeMentionAt.setAttribute(`data-first-name`, details[`first-name`]);
@@ -377,6 +376,9 @@ export const TCMention = MediumEditor.Extension.extend({
       }
       if (details[`user-id`] && details[`user-id`].length > 0) {
         this.activeMentionAt.setAttribute(`data-user-id`, details[`user-id`]);
+      }
+      if (details[`email`] && details[`email`].length > 0) {
+        this.activeMentionAt.setAttribute(`data-email`, details[`email`]);
       }
       this.activeMentionAt.setAttribute(`data-found`, `true`);
       textNode.textContent = selectedText;
