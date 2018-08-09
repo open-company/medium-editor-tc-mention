@@ -380,6 +380,9 @@ export const TCMention = MediumEditor.Extension.extend({
       if (details[`email`] && details[`email`].length > 0) {
         this.activeMentionAt.setAttribute(`data-email`, details[`email`]);
       }
+      if (details[`avatar-url`] && details[`avatar-url`].length > 0) {
+        this.activeMentionAt.setAttribute(`data-avatar-url`, details[`avatar-url`]);
+      }
       this.activeMentionAt.setAttribute(`data-found`, `true`);
       textNode.textContent = selectedText;
       MediumEditor.selection.select(this.document, textNode, selectedText.length);
