@@ -298,8 +298,8 @@ export const TCMention = MediumEditor.Extension.extend({
       this.activatePanel();
       this.wrapWordInMentionAt();
     }
-    this.positionPanel();
     this.updatePanelContent();
+    this.positionPanel();
   },
 
   activatePanel() {
@@ -348,11 +348,16 @@ export const TCMention = MediumEditor.Extension.extend({
   },
 
   positionPanel() {
-    const { bottom, left } = this.activeMentionAt.getBoundingClientRect();
+    const { top, bottom, left } = this.activeMentionAt.getBoundingClientRect();
     const { pageXOffset, pageYOffset } = this.window;
+    const winHeight = this.document.documentElement.clientHeight || this.window.innerHeight;
+    const horizontalPosition = pageXOffset + left;
+    const verticalPosition = bottom > (winHeight / 2) ?
+                              (pageYOffset + top - this.mentionPanel.clientHeight) :
+                              (pageYOffset + bottom - this.mentionPanel.clientHeight);
 
-    this.mentionPanel.style.top = `${pageYOffset + bottom}px`;
-    this.mentionPanel.style.left = `${pageXOffset + left}px`;
+    this.mentionPanel.style.top = `${verticalPosition}px`;
+    this.mentionPanel.style.left = `${horizontalPosition}px`;
   },
 
   updatePanelContent() {
