@@ -354,7 +354,7 @@ export const TCMention = MediumEditor.Extension.extend({
     const horizontalPosition = pageXOffset + left;
     const verticalPosition = bottom > (winHeight / 2) ?
                               (pageYOffset + top - this.mentionPanel.clientHeight) :
-                              (pageYOffset + bottom - this.mentionPanel.clientHeight);
+                              pageYOffset + bottom;
 
     this.mentionPanel.style.top = `${verticalPosition}px`;
     this.mentionPanel.style.left = `${horizontalPosition}px`;
