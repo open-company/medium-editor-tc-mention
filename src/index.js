@@ -145,7 +145,7 @@ export const TCMention = MediumEditor.Extension.extend({
     this.unsubscribeCallbacks = [];
 
     const subscribeCallbackName = (eventName, callbackName) => {
-      const boundCallback = ::this[callbackName];
+      const boundCallback = this[callbackName];
       this.subscribe(eventName, boundCallback);
 
       this.unsubscribeCallbacks.push(() => {
@@ -361,7 +361,7 @@ export const TCMention = MediumEditor.Extension.extend({
   },
 
   updatePanelContent() {
-    this.renderPanelContent(this.mentionPanel, this.word, ::this.handleSelectMention);
+    this.renderPanelContent(this.mentionPanel, this.word, this.handleSelectMention);
   },
 
   handleSelectMention(selectedText, details) {
