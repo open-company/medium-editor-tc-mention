@@ -1,7 +1,8 @@
 {
-  "name": "medium-editor-tc-mention",
+  "name": "@open-company/oc-medium-editor-tc-mention",
+  "scope": "open-company",
   "version": "2.2.4",
-  "description": "MediumEditor extension for mention panels like @username or #tagging",
+  "description": "MediumEditor extension for mention panels like @username or #tagging. Forked from https://github.com/tomchentw/medium-editor-tc-mention",
   "main": "lib/index.js",
   "files": [
     "lib/",
@@ -29,7 +30,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/tomchentw/medium-editor-tc-mention"
+    "url": "https://github.com/open-company/medium-editor-tc-mention"
   },
   "keywords": [
     "medium",
@@ -38,18 +39,19 @@
     "extension",
     "mention",
     "tag",
-    "autocomplete"
+    "autocomplete",
+    "carrot"
   ],
   "author": {
-    "name": "tomchentw",
-    "email": "developer@tomchentw.com",
-    "url": "https://github.com/tomchentw"
+    "name": "Iacopo Carraro",
+    "email": "iacopo@rc0.eu",
+    "url": "https://github.com/bago2k4"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/tomchentw/medium-editor-tc-mention/issues"
+    "url": "https://github.com/open-company/medium-editor-tc-mention/issues"
   },
-  "homepage": "https://tomchentw.github.io/medium-editor-tc-mention/",
+  "homepage": "https://carrot.io/",
   "devDependencies": {
     "babel-cli": "^6.9.0",
     "babel-core": "^6.9.1",
