@@ -1,5 +1,5 @@
 {
-  "name": "@open-company/oc-medium-editor-tc-mention",
+  "name": "@open-company/medium-editor-tc-mention",
   "scope": "open-company",
   "version": "2.2.4",
   "description": "MediumEditor extension for mention panels like @username or #tagging. Forked from https://github.com/tomchentw/medium-editor-tc-mention",
